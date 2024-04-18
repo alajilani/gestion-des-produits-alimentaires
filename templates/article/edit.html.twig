@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Article{% endblock %}
+
+
+
+
+{% block body %}
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css">
+<div class="container">
+ <div class="modal fade" id="myModal{{ article.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ article.id }}" aria-hidden="true">
+        <!-- Le contenu de la modal -->
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Fill in your details</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                      {{ form_start(form, {'attr': {'class': 'article-form'}}) }}
+    <div class="form-group">
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.shortDescription) }}
+        {{ form_widget(form.shortDescription, {'attr': {'class': 'form-control'}}) }}
+    </div>
+     <div class="form-group">
+        {{ form_label(form.content) }}
+        {{ form_widget(form.content, {'attr': {'class': 'form-control  summernote'}}) }}
+    </div>
+ 
+     <div class="form-group">
+        {{ form_label(form.category) }}
+        {{ form_widget(form.category, {'attr': {'class': 'form-control select-category'}}) }}
+    </div>
+     
+    
+
+    <button class="btn btn-danger" type="submit">{{ button_label|default('update') }}</button>
+{{ form_end(form) }}
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+ $(document).ready(function() {
+        $('#myModal{{ article.id }}').modal('show');
+    });
+</script>
+
+<script>
+    // Initialiser Summernote sur le champ textarea
+    $(document).ready(function() {
+        $('.summernote').summernote({
+            height: 300,  // Hauteur de l'éditeur
+            toolbar: [    // Options de la barre d'outils
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['forecolor', 'backcolor']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    });
+</script> 
+
+
+
+{% endblock %}

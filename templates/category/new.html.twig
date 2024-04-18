@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Category{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css') }}">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <style>
+        
+   
+        .sidebar {
+            background-color:rgb(7, 7, 7);
+            color:white;
+            padding: 20px;
+            height: 100vh;
+            width: 20%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+          
+        }
+        
+
+        .sidebar h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .sidebar li {
+            margin-bottom: 40px;
+        }
+
+        .sidebar li a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .sidebar li a:hover {
+            color: red;
+        }
+
+        .content {
+        margin-left: 20%; /* Ajoutez une marge équivalente à la largeur du sidebar */
+        padding: 20px;
+    }
+
+           .menu-title {
+        color: rgb(0, 96, 92);
+        font-weight: bold;
+        
+    }
+
+       
+
+        
+
+   
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="sidebar">
+    <h2><span class="menu-title">Menu</span></h2>
+    <ul class="list-group">
+        <li><a href="#"><i class="fa-solid fa-house   "></i> gestion des articles</a></li>
+        <li><a href="#" ><span class="material-symbols-outlined">category</span>gestion des categories</a></li>
+        <li><a href="#"> <i class="fa-regular fa-user "></i>gestion des users</a></li>
+        <li><a href="#"><i class="fa-solid fa-arrow-right-from-bracket "></i>Déconnexion</a></li>
+    </ul>
+</div>
+
+    <div class="content">
+    <h1>Create new Category</h1>
+
+    {{ include('category/_form.html.twig') }}
+
+    <a href="{{ path('app_category_index') }}">back to list</a>
+{% endblock %}
